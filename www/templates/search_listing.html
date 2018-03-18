@@ -1,0 +1,25 @@
+<ion-view >
+  <ion-header-bar class="bar-stableb bg-color-white">
+    <button class="common-button button button-positive button-clear button_text ion-chevron-left txt-color-black"></button>
+    <div class="bmd-spclity-head">Search list</div>
+  </ion-header-bar>
+<ion-content class="bmd-spcl-theme" ng-init="searchList()">
+  <div class="bmd-spcl-list" >
+    <div class="page_loader_div" ng-show="loading">
+      <img id="mySpinner" src="img/loading.gif" />
+    </div> 
+    <ul class="list"  ng-show="loadingpart">
+      <li ng-repeat = "select in searchResponse.user" class="bmd-spcl-listing" ng-click="view_search_list_doc(select.id)"> {{ select.name}}<small class="bmd-spcl-small"><sub> - doctor</sub></small></li>
+      <li ng-repeat = "select in searchResponse.speciality" class="bmd-spcl-listing" ng-click="clickfunction(select.id,select.name,selectionname='speciality','search')"> {{ select.name}}<small class="bmd-spcl-small"><sub> - speciality</sub></small></li>
+      <li ng-repeat = "select in searchResponse.location" class="bmd-spcl-listing" ng-click="clickfunction(select.id,select.name,selectionname='location','search')"> {{ select.name}}<small class="bmd-spcl-small"><sub> - location</sub></small></li>
+      <li ng-repeat = "select in searchResponse.languages" class="bmd-spcl-listing" ng-click="clickfunction(select.id,select.name,selectionname='languages','search')"> {{ select.name}}<small class="bmd-spcl-small"><sub> - languages</sub></small></li>
+      <li ng-repeat = "select in searchResponse.insurance" class="bmd-spcl-listing" ng-click="clickfunction(select.id,select.name,selectionname='insurance','search')"> {{ select.name}}<small class="bmd-spcl-small"><sub> - insurance</sub></small></li>
+    </ul>
+    <div ng-show="noMoreItems" class="noMoreItems">
+      <img id="mySpinner" src="img/not_found.png" /> 
+      <p style="color:#C81E51">No Results<p>
+    </div>
+  </div>
+</ion-content>
+
+</ion-view>

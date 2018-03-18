@@ -1,0 +1,63 @@
+<ion-view >
+      <ion-header-bar class="bar-stableb bg-color-white">
+      <button class="common-button button button-positive button-clear button_text ion-chevron-left txt-color-black"></button>
+		<div class="bmd-spclity-head">Search Result</div>
+		<button class="common-button button button-positive button-clear button_text icon ion-location txt-color-black mR25"></button>
+		 <button class="common-button button button-positive button-clear button_text icon ion-android-more-vertical txt-color-black"></button>
+      </ion-header-bar>
+	 <ion-content class="theme-bg">
+	 <div class="bmd-results-wrapper">
+		<div class="bmd-result-row">
+			<div class="bmd-result1">
+				<div class="bmd-result-profpic">
+					<img ng-src="{{Doc.image}}"> <!-- {{ coreurl }}admin/ -->
+				</div>
+				<div class="bmd-result-details">
+					<h3>{{Doc.fname}} {{Doc.lname}}</h3>  
+					<h4><b>Speciality</b> - {{Doc.speciality}}</h4>
+					<h4><b>Additional Languages</b> - {{Doc.languages}}</h4>
+					<h4><b>Gender</b> - {{Doc.gender}}</h4>
+					<h4><b>Message</b> - {{Doc.messages}}</h4>
+					<!-- City: <h4>{{Doc.city}}</h4> -->
+					<div>
+					<span class="rating" style="margin-top:0px;vertical-align: -7px;padding-right: 15px;">
+						<input type="radio" ng-model="Doc.rating" value="5"  class="rating-input"id="rating-input-1-5" name="rating-input-1">
+						<label for="rating-input-1-5" class="rating-star"></label>
+						<input type="radio" ng-model="Doc.rating" value="4"  class="rating-input" id="rating-input-1-4" name="rating-input-1">
+						<label for="rating-input-1-4" class="rating-star"></label>
+						<input type="radio" ng-model="Doc.rating" value="3"  class="rating-input" id="rating-input-1-3" name="rating-input-1">
+						<label for="rating-input-1-3" class="rating-star"></label>
+						<input type="radio" ng-model="Doc.rating" value="2"  class="rating-input" id="rating-input-1-2" name="rating-input-1">
+						<label for="rating-input-1-2" class="rating-star"></label>
+						<input type="radio" ng-model="Doc.rating" value="1" class="rating-input" id="rating-input-1-1" name="rating-input-1">
+						<label for="rating-input-1-1" class="rating-star"></label>
+					</span>
+					</div>
+					<p>{{Doc.address}}</p>
+				</div>				
+			</div>
+		</div>
+		<div class="bmd-calender">
+			<div class="bmd-results-date">
+			<div><button class="common-button button button-positive button-clear button_text icon ion-ios-arrow-left txt-color-white" ng-click="single_calendar('prev')">Back</button></div>
+				<div style="width: 100%;text-align: center;padding: 10px;">{{Doc.date | date: "EEE, MMM dd"}} - {{Doc.endDate | date: "EEE, MMM dd"}}</div>
+			<div><button class="common-button button button-positive button-clear button_text icon ion-ios-arrow-right txt-color-white" ng-click="single_calendar('next')">Next</button></div>
+			</div>
+			
+
+			<div class="loader_div" ng-show="loading">
+		      <img id="mySpinner" src="img/loader.gif" />
+		    </div>
+			<div class="bmd-result-schedules"  ng-show="loadingpart">
+				<div class="no_date_result" ng-show="!Doc.resultData.doc_dates.dates">{{Doc.resultData.doc_dates}}</div>
+				<ul ng-show="Doc.resultData.doc_dates.dates" class="bmd-sch-row" ng-repeat="(key,items) in Doc.resultData.doc_dates.dates track by $index">
+					<li class="bmd-sch" ng-repeat="item in items" ng-class="{'booked-bg': item == 'Booked' || item == 'Break' || item == 'Vacation'}" ng-click="(item == 'Booked' || item == 'Break' || item == 'Vacation') || apnt_navigate(key,item)"  ng-disabled="(item == 'Booked' || item == 'Break' || item == 'Vacation')? true : false" >{{item}}</li>
+				</ul>
+			</div>
+
+		</div>
+	</div>
+	
+	</ion-content>
+	</ion-view>
+	

@@ -1,0 +1,190 @@
+    <ion-view ng-init="loadprof()">
+      <ion-header-bar class="bar-stableb bg-color-white">
+      <button class="common-button button button-positive button-clear button_text ion-chevron-left txt-color-black"></button>
+		<div class="bmd-spclity-head">Book Appointment</div>
+      </ion-header-bar>
+	<ion-content class="theme-bg">
+    <div class="bmd-appmnt-wrapper" ng-init="apnt_init()" scroll-to-top="isAtTop">
+      <!--div class="bmd-appmnt-tab">
+        <ul>
+          <li class="bmd-appmnt-tab-current">Patient</li>
+          <li ng-class="{'bmd-appmnt-tab-current' : AppointmentDetails.confirm || AppointmentDetails.success}">Appointment</li>
+          <li ng-class="{'bmd-appmnt-tab-current' : AppointmentDetails.success}">Finished</li>
+        </ul>
+      </div-->
+    <div class="bmd-appmnt-content">
+      <div class="bmd-appmnt-content-head" > 
+        <h1>HCP Profile</h1>
+      </div>
+      <form name="docprofform" ng-submit="docprofform.$valid && docProfUpdate(docprof)">
+      <div class="bmd-appmnt-content-details docoi">
+        <div class="row bokol">
+            <div class="bmd-usr">
+                <div class="bmd-usr2">
+                <label>Upload Picture</label>
+
+              <input type="file" class="bmd-usr-input" onchange="fileSelected(this, 'profilePicture')" accept="image/*" /> 
+             <p>Size should be max 1 mb and format should be jpg,png,jpeg.</p>
+              <div ng-if="profimg" ng-click="show_image('profimg')" class="bmd-apponmnt-button view_pico"> Show picture</div> 
+                
+            </div>
+              </div>
+        </div>
+        <div class="row">
+          <div class="bmd-usr">
+            <div class="bmd-usr2">
+            <input class="bmd-usr-input" placeholder="First Name" name="Awards" type="text" ng-model="docprof.firstname">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="bmd-usr">
+            <div class="bmd-usr2">
+            <input class="bmd-usr-input" placeholder="Last Name" name="Awards" type="text" ng-model="docprof.lastname">
+            </div>
+          </div>
+        </div>
+        <div class="row bokol">
+            <div class="bmd-usr2">
+            <label>Gender</label>
+            </div>
+        </div>
+
+         <div class="row">
+          <div class="bmd-usr">
+            <div class="bmd-usr2">
+           <!--  <label>Gender</label> -->
+            <!-- <select class="bmd-style bmd-drop" data-ng-options="doctor in gender.id" data-ng-model="gender"></select> -->
+            <select class="bmd-style bmd-drop" required ng-model="docprof.gender">
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+            </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="row bokol">
+          <div class="bmd-usr">
+              <div class="bmd-usr2">
+              <label>Upload Practice Certificate</label>
+
+            <input type="file" class="bmd-usr-input" onchange="fileSelected(this, 'practiceCertificate')" accept="image/*" /> 
+            <p>Size should be max 1 mb and format should be jpg,png,jpeg.</p> 
+            <div ng-if="PracCert" ng-click="show_image('PracCert')" class="bmd-apponmnt-button view_pico"> Show practice certificate </div>   
+              </div>
+            </div>
+      </div>
+      <div class="row bokol">
+        <div class="bmd-usr">
+            <div class="bmd-usr2">
+            <label>Upload Registration Certificate</label>
+
+          <input type="file" class="bmd-usr-input" onchange="fileSelected(this, 'registrationCertificate')" accept="image/*" /> 
+          <p>Size should be max 1 mb and format should be jpg,png,jpeg.</p>
+          <div ng-if="regtCert" ng-click="show_image('regtCert')" class="bmd-apponmnt-button view_pico"> Show registration certificate </div>     
+            </div>
+          </div>
+    </div>
+          <div class="row bokol">
+            
+            <div class="bmd-usr">
+              <div class="bmd-usr2">
+                <label>Degree</label>
+              <!--input class="bmd-usr-input" placeholder="Degree" name="degree" type="text" ng-model="docprof.doctor_degree"-->
+              <multiple-autocomplete ng-model="docprof.doctor_degree" suggestions-arr="degreeList"></multiple-autocomplete> 
+            </div>
+            </div>
+          </div>
+          <div class="row bokol">
+         <div class="bmd-usr">
+              <div class="bmd-usr2">
+                <label>Speciality</label>
+             <!--input class="bmd-usr-input" name="Specialty" placeholder="Speciality" type="text" ng-model="docprof.doctor_speciality"-->
+              <multiple-autocomplete ng-model="docprof.doctor_speciality" suggestions-arr="splList"></multiple-autocomplete> 
+              </div>
+            </div>
+          </div>
+          <!--div class="row">
+            <div class="bmd-usr">
+              <div class="bmd-usr2">
+              <input class="bmd-usr-input" placeholder="Awards" name="Awards" type="text" ng-model="docprof.doctor_awards">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="bmd-usr">
+              <div class="bmd-usr2">
+              <input class="bmd-usr-input" name="Memberships" placeholder="Professional Memberships" type="text" ng-model="docprof.doctor_memberships">
+              </div>
+            </div>
+          </div-->
+          <div class="row bokol">
+            <div class="bmd-usr">
+              <div class="bmd-usr2">
+                <label>Languages Spoken</label>
+              <!--<input class="bmd-usr-input" placeholder="Languages Spoken" name="lastname" type="text" ng-model="docprof.doctor_languages">-->
+              <multiple-autocomplete ng-model="docprof.doctor_languages" suggestions-arr="langList"></multiple-autocomplete> 
+              <!--div ng-repeat="language in langList">
+                <input type="checkbox" ng-model="docprof.doctor_languages" ng-true-value="'{{language.id}}'" ng-false-value="'0'"> {{language.language_name}}
+              </div-->
+              </div>
+            </div>
+          </div>
+          <div class="row bokol">
+           
+              <!--div class="bmd-usr2">
+                  <label>Location</label>
+              <select class="bmd-style bmd-drop" required ng-model="docprof.location">
+                <option ng-repeat="singleLocation in location_data" value="{{singleLocation.id}}">{{singleLocation.city}}</option>
+              </select>
+       
+              </div-->
+            
+          </div>
+          <!--div class="row">
+            <div class="bmd-usr">
+              <div class="bmd-usr2">
+            
+              <select class="bmd-style bmd-drop" data-ng-options="singleLocation.city for singleLocation in location_data track by singleLocation.id" ng-change="change_location(selectesingleLocation.id)" data-ng-model="selectesingleLocation"></select>
+              </div>
+            </div>
+          </div--> 
+          <!-- <div class="row">
+            <div class="bmd-usr">
+              <div class="bmd-usr2">
+              <input class="bmd-usr-input" name="lastname" type="text" placeholder="Office Address" ng-model="docprof.doctor_office_address">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="bmd-usr">
+              <div class="bmd-usr2">
+              <input class="bmd-usr-input" name="lastname" type="text" placeholder="Office City" ng-model="docprof.doctor_office_city">
+              </div>
+            </div>
+          </div> -->
+          <div class="row">
+            <div class="bmd-usr">
+              <div class="bmd-usr2">
+               <input gm-places-autocomplete ng-model="docprof.location_data" type="text" class="bmd-usr-input" placeholder="{{location_str_old}}" >
+             </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="bmd-usr">
+              <div class="bmd-usr2">
+              <input class="bmd-usr-input" name="lastname" placeholder="About Yourself (This will be displayed to patient)" type="text" ng-model="docprof.about_doctor">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <button class="bmd-main-btn bmd-apponmnt-button"  ng-click="submitted=true">Update</button>
+          </div>
+      </div>
+    </form>
+    </div>
+  </div>
+
+</ion-content>
+
+    </ion-view>

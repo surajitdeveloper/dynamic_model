@@ -1,0 +1,53 @@
+<ion-modal-view  class="sign_form">
+  <ion-header-bar class="bar-stableb bg-color-white">
+  <button ng-click="closeLogin()" class="common-button button button-positive button-clear button_text ion-chevron-left txt-color-black" style="color:white !important;"></button>
+    <div class="bmd-spclity-head">LogIn</div>
+  </ion-header-bar>
+  <ion-content  class="theme-bg">
+    <div class="bmd-title-logo">
+      <img src="img/bmd-signinlogo.png"> 
+    </div>
+<div class="bmd-usr-wrapper">
+  <h3>Patient login</h3>
+    <form  name="loginform" ng-submit="loginform.$valid && doLogin()">
+        <div class="error_block" ng-show="loginError">
+          <ul>
+            <li ng-repeat="msg in loginErrorMsg">{{msg.message}}</li>
+          </ul>
+        </div>
+    <div class="bmd-usr">
+      <div class="bmd-usr1"><img src="img/bmd-usr.png"></div>
+      <div class="bmd-usr2">
+        <input class="bmd-usr-input" name="email" type="email" placeholder="Enter your Email-ID" ng-model="loginData.email" required>
+      </div>
+    </div>
+    <div class="bmd-field error" ng-show="submitted  && loginform.email.$error.required">Email-Id is required.</div>
+    <div class="bmd-field error" ng-show="loginform.email.$touched && loginform.email.$error.email">Invalid Email-Id</div>
+    <div class="bmd-usr">
+    <div class="bmd-usr1"><img src="img/bmd-pass.png"></div>
+    <div class="bmd-usr2">
+    <input class="bmd-usr-input" name="password" type="password" placeholder="Password" ng-model="loginData.password" required>
+    </div>
+    </div>
+    <div class="bmd-field error" ng-show="submitted  && loginform.password.$error.required">Password is required.</div>
+    <!-- <div class="bmd-field error" ng-show="loginform.password.$touched && loginform.password.$invalid">Password is required.</div> -->
+   <!--  <div class="bmd-frgtpass">
+    <i><u>Forget your Password</u></i>
+    </div> -->
+    <button class="bmd-main-btn" ng-click="submitted=true">Sign in</button>
+
+    
+    <!-- <div class="bmd-social">
+    <button class="bmd-fb-btn fbbg txt-color-white"><img src="img/bmd-fb.png" style="vertical-align: -7px;
+padding-right: 20px;">Sign in with Facebook</button>
+    <button class="bmd-ggle-btn gglebg txt-color-white"><img src="img/bmd-google.png" style="vertical-align: -7px;
+padding-right: 20px;">Sign in with Google</button>
+    </div> -->
+    </form>
+    <button class="bmd-main-btn" ng-click="submitted=false; join()">Patient Registration</button>
+
+     <button class="bmd-main-btn"  ng-click="docLogin()">HCP Sign in</button>
+  </div>
+  </ion-content>
+</ion-modal-view>
+

@@ -1,0 +1,158 @@
+    <ion-view>
+      <ion-header-bar class="bar-stableb bg-color-white">
+      <button class="common-button button button-positive button-clear button_text ion-chevron-left txt-color-black"></button>
+		<div class="bmd-spclity-head">Book Appointment</div>
+      </ion-header-bar>
+	<ion-content class="theme-bg">
+    <div class="bmd-appmnt-wrapper" ng-init="apnt_init()" scroll-to-top="isAtTop">
+      <div class="bmd-appmnt-tab">
+        <ul>
+          <li class="bmd-appmnt-tab-current">Patient</li>
+          <li ng-class="{'bmd-appmnt-tab-current' : AppointmentDetails.confirm || AppointmentDetails.success}">Appointment</li>
+          <li ng-class="{'bmd-appmnt-tab-current' : AppointmentDetails.success}">Finished</li>
+        </ul>
+      </div>
+    <div class="bmd-appmnt-content">
+      <div class="bmd-appmnt-content-head"  ng-if="noSessionStatus"> 
+        <h1>Patient Information</h1>
+      </div>
+      <div class="bmd-appmnt-content-details" ng-if="noSessionStatus">
+          <b>Have you used DOCi before?</b><br>
+          <div class="row">
+            <div class="bmd-appmnt-content-check">
+              <div class="bmd-appmnt-content-check-inner" ng-click="signup()">
+                <input id="checkbox-1" value="new_user" class="checkbox-custom" name="user_type" type="radio" >
+                <label for="checkbox-1" class="checkbox-custom-label"></label>&nbsp;Yes, I'm New to DOCi<br>
+              </div>
+              <div class="bmd-appmnt-content-check-inner" ng-click="login()">
+                <input id="checkbox-2" value="exist_user" class="checkbox-custom" name="user_type" type="radio" >
+                <label for="checkbox-2" class="checkbox-custom-label"></label>I've used DOCi before<br>
+              </div>
+            </div>
+          </div>
+      </div>
+
+
+      <!--appointment details -->
+      <div class="bmd-appmnt-content-details" ng-class="transitionClass" data-ng-view data-ng-animate="transitionClass" ng-if="userSessionStatus && AppointmentDetails.details">
+        <div class="bmd-list">
+          <ul style="padding:10px">
+            <li class="bmd-listing">
+              <div class="wi-100 text-left">Patient name</div>
+              <div class="wi-100 text-center">--</div>
+              <div class="wi-100 text-right">{{userSession.name}}</div>
+            </li>
+            <li class="bmd-listing">
+              <div class="wi-100 text-left">Gender</div>
+              <div class="wi-100 text-center">--</div>
+              <div class="wi-100 text-right">{{(userSession.gender==0) ? 'Not Specified' : (userSession.gender==1) ? 'Male' : 'Female' }}</div>
+            </li>
+            <li class="bmd-listing">
+              <div class="wi-100 text-left">Appointment Time</div>
+              <div class="wi-100 text-center">--</div>
+              <div class="wi-100 text-right">{{AppointmentDetails.selectedDate}}</div>
+            </li>
+          </ul>
+        </div>
+       
+        <div class="apnt-navigation">
+            <a ><span class='ion-chevron-left'>Prev</span></a>
+            <!-- <a class="active" ng-click="slide('slidein-from-right');AppointmentDetails.details = false;AppointmentDetails.confirm=true;"><span class='ion-chevron-right'></span></a> -->
+            <a class="active" ng-click="slide_apnt('slidein-from-right','details','confirm')">Next<span class='ion-chevron-right'></span></a>
+        </div>
+      </div>
+      <!--appointment details -->
+
+      <!--Appointment Confirm -->
+      <div class="bmd-appnmnt4" ng-class="transitionClass" data-ng-view data-ng-animate="transitionClass" ng-if="userSessionStatus && AppointmentDetails.confirm">
+        <div class="bmd-appmnt-content">
+          <div class="bmd-result-row">
+          <div class="bmd-result1">
+          <div class="bmd-result-profpic">
+          <!-- <img ng-src="{{ coreurl }}admin/{{Doc.image}}">  -->
+          <img ng-src="{{Doc.image}}">
+          </div>
+          <div class="bmd-result-details">
+          <h3>{{Doc.fname}} {{Doc.lname}}</h3>
+          <h4>{{Doc.speciality}}</h4>
+          <div>
+          <span class="rating" style="margin-top:0px;vertical-align: -7px;padding-right: 15px;">
+          <input type="radio" ng-model="Doc.rating" value="5"   class="rating-input"id="rating-input-1-5" name="rating-input-1">
+          <label for="rating-input-1-5" class="rating-star"></label>
+          <input type="radio"  ng-model="Doc.rating" value="4"  class="rating-input" id="rating-input-1-4" name="rating-input-1">
+          <label for="rating-input-1-4" class="rating-star"></label>
+          <input type="radio" ng-model="Doc.rating" value="3"   class="rating-input" id="rating-input-1-3" name="rating-input-1">
+          <label for="rating-input-1-3" class="rating-star"></label>
+          <input type="radio" ng-model="Doc.rating" value="2"   class="rating-input" id="rating-input-1-2" name="rating-input-1">
+          <label for="rating-input-1-2" class="rating-star"></label>
+          <input type="radio"  ng-model="Doc.rating" value="1"   class="rating-input" id="rating-input-1-1" name="rating-input-1">
+          <label for="rating-input-1-1" class="rating-star"></label>
+          </span>
+          </div>
+          <p>{{Doc.address}}</p>
+          </div>        
+          </div>
+          <div class="bmd-appnmnt-sch">
+            When {{AppointmentDetails.selectedDate   | date: 'EEEE,MMMM dd,yyyy hh:mm a'}}
+          </div>
+          </div>
+        </div>
+        <div class="bmd-appnmnt4-inner">
+          <!-- <h5>Will you use insurance ?</h5>
+          <select class="bmd-style" ng-model="insurance" ng-change="appinsurance(insurance)" >
+            <option ng-repeat="option in AppointmentDetails.selectionDetails" value="{{option.id}}">{{option.name}}</option>
+          </select> -->
+
+
+          <h5>What is the reason for your visit?</h5> 
+          <!--select id="srchReason" name="srchReason" ng-model="srchReason" ng-change="appreason(srchReason)" class="bmd-style">
+              <option selected value="">Reason for Visit</option>
+              <option ng-repeat="option in AppointmentDetails.visit_categories" value="{{option.id}}">{{option.reason}}</option>
+          </select-->
+          <select id="srchReason" name="srchReason" ng-model="srchReason" ng-change="appreason(srchReason)" class="bmd-style">
+              <option selected value="">Reason for Visit</option>
+              <option ng-repeat="option in reason_data" value="{{option.id}}">{{option.service_name}}</option>
+          </select>
+          <h5>Have you visited this doctor before?</h5>
+          <div style="margin-top: 20px;">
+            <input id="checkbox-1" class="checkbox-custom" name="patient" type="radio" >
+            <label for="checkbox-1" class="checkbox-custom-label"></label>I am a new Paitent<br>
+          </div>
+          <div style="margin-bottom: 20px;">
+            <input id="checkbox-2" class="checkbox-custom" name="patient" type="radio" >
+            <label for="checkbox-2" class="checkbox-custom-label"></label>I visted this doctor before<br>
+          </div>
+        </div>
+        <div class="apnt_status" ng-bind="Appointment.response.msg" ng-if="Appointment.response.status==false">
+        </div>
+        <div class="apnt-navigation">
+            <!-- <a class="active" ng-click="AppointmentDetails.confirm=false;AppointmentDetails.details = true;slide('slidein-from-left');"><span class='ion-chevron-left'></span></a>
+            <a class="active" ng-click="bookAppointment();slide('slidein-from-right')"><span class='ion-chevron-right'></span></a> -->
+            <a class="active" ng-click="slide_apnt('slidein-from-left','confirm','details');"><span class='ion-chevron-left'>Prev</span></a>
+            <a class="active" ng-click="bookAppointment();">Next<span class='ion-chevron-right'></span></a>
+        </div>
+      </div>
+      <!--Appointment Confirm -->
+
+      <!-- Appointment success -->
+      <div class="appnt_confirm" ng-class="transitionClass" data-ng-view data-ng-animate="transitionClass" ng-if="userSessionStatus && AppointmentDetails.success">
+        <div class="bmd-title-logo">
+          <img src="img/bmd-signinlogo.png">
+        </div>
+        <div class="bmd-bookng-cnfirmation">
+          <h1>BOOKING COMPLETED</h1>
+          <p><b>Your booking has been confirmed.<br>Thank you.</b></p> 
+          <a class="bmd-main-btn" ng-click="goto('#/app/my_booking')">My Booking</a>
+          <a class="bmd-main-btn" ng-click="goto('#/app/home')">Home</a>
+        </div>
+      </div>
+      <!-- Appointment success -->
+
+
+
+    </div>
+  </div>
+
+</ion-content>
+
+    </ion-view>

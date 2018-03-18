@@ -1,0 +1,54 @@
+    <ion-view ng-init="loadprof()">
+      <ion-header-bar class="bar-stableb bg-color-white">
+      <button class="common-button button button-positive button-clear button_text ion-chevron-left txt-color-black"></button>
+		<div class="bmd-spclity-head">Book Appointment</div>
+      </ion-header-bar>
+	<ion-content class="theme-bg">
+    <div class="bmd-appmnt-wrapper" ng-init="apnt_init()" scroll-to-top="isAtTop">
+      <!--div class="bmd-appmnt-tab">
+        <ul>
+          <li class="bmd-appmnt-tab-current">Patient</li>
+          <li ng-class="{'bmd-appmnt-tab-current' : AppointmentDetails.confirm || AppointmentDetails.success}">Appointment</li>
+          <li ng-class="{'bmd-appmnt-tab-current' : AppointmentDetails.success}">Finished</li>
+        </ul>
+      </div-->
+    <div class="bmd-appmnt-content">
+      <div class="bmd-appmnt-content-head" > 
+        <h1>HCP Profile</h1>
+
+        <div class="bmd-results-wrapper">
+          <div class="bmd-result-row">
+            <div class="bmd-result1">
+              <div class="bmd-result-profpic">
+                <img ng-src="{{display_image}}"> <!-- {{ coreurl }}admin/ -->
+              </div>
+              <div class="bmd-result-details">
+                 <h2>Meet Your Provider!</h2> 
+                <h3>{{docprof.firstname}} {{docprof.lastname}}</h3>  
+                <h4><b>Speciality</b> - {{doctor_speciality}}</h4>
+                <h4><b>Additional Languages</b> - {{doctor_languages}}</h4>
+                <h4><b>Gender</b> - {{docprof.gender}}</h4>
+                <h4><b>Message</b> - {{docprof.about_doctor}}</h4>
+      </div>
+      </div>
+      </div>
+
+</div>      
+ 
+<!-- {{docprof.doctor_degree}}<br>
+{{docprof.location_data}}<br>
+{{docprof.about_doctor}}<br>
+{{docprof.doctor_languages}}<br>
+     
+    
+   {{docprof.location_data}}    <br>    -->
+      
+          
+          
+          
+     
+  </div>
+
+</ion-content>
+
+    </ion-view>

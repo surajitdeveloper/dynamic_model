@@ -1,0 +1,60 @@
+    <ion-view ng-init="loadprof()">
+      <ion-header-bar class="bar-stableb bg-color-white">
+      <button class="common-button button button-positive button-clear button_text ion-chevron-left txt-color-black"></button>
+		<div class="bmd-spclity-head">{{page_title}}</div>
+      </ion-header-bar>
+	<ion-content class="theme-bg">
+    <div class="bmd-appmnt-wrapper" ng-init="apnt_init()" scroll-to-top="isAtTop">
+      <!--div class="bmd-appmnt-tab">
+        <ul>
+          <li class="bmd-appmnt-tab-current">Patient</li>
+          <li ng-class="{'bmd-appmnt-tab-current' : AppointmentDetails.confirm || AppointmentDetails.success}">Appointment</li>
+          <li ng-class="{'bmd-appmnt-tab-current' : AppointmentDetails.success}">Finished</li>
+        </ul>
+      </div-->
+    <div class="bmd-appmnt-content">
+      <div class="bmd-appmnt-content-head" > 
+        <h1>{{page_title}}</h1>
+      </div>
+      <div class="bmd-appmnt-content-details docoi" >
+        
+      
+       
+          <div class="row bokol">
+            
+            <div class="bmd-usr">
+              <div class="bmd-usr2">
+                <!-- <label>Degree</label> -->
+                {{error}}
+                <table ng-if="showtb" class="doc_book">
+                  <thead>
+                    <tr>
+                      <th>Patient name</th>
+                      <th>Gender</th>
+                      <th>Appoinment</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    <tr ng-click="patientDet(app.patient_id)" ng-repeat="app in appoinment">
+                      <td>{{app.patient_name}}</td>
+                      <td>{{app.gender}}</td>
+                      <td>{{app.appointment_date}} {{app.appointment_time}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+             
+            </div>
+            </div>
+          </div>
+          
+          </div>
+          
+      </div>
+    
+    </div>
+  </div>
+
+</ion-content>
+
+    </ion-view>

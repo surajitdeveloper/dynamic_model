@@ -1,0 +1,92 @@
+<ion-modal-view  class="sign_form">
+  <ion-header-bar class="bar-stableb bg-color-white">
+  <button ng-click="closeLogin()" class="common-button button button-positive button-clear button_text ion-chevron-left txt-color-black" style="color:white !important;"></button>
+    <div class="bmd-spclity-head">LogIn</div>
+  </ion-header-bar>
+  <ion-content  class="theme-bg">
+    <div class="bmd-title-logo">
+      <img src="img/1.png"> 
+    </div>
+<!--   css tab design  -->
+<div ng-cloak>
+    <md-content>
+      <md-tabs md-dynamic-height md-border-bottom>
+        <md-tab label="Patient Login">
+          <md-content class="md-padding">
+            <p>
+              <div class="bmd-usr-wrapper">
+  <h3>Patient login</h3>
+    <form  name="loginform" ng-submit="loginform.$valid">
+      
+        <div class="error_block" ng-show="loginError">
+          <ul>
+            <li  ng-repeat="msg in loginErrorMsg">{{msg.message}}</li>
+          </ul>
+        </div>
+    <div class="bmd-usr">
+      <div class="bmd-usr1"><img src="img/bmd-usr.png"></div>
+      <div class="bmd-usr2">
+        <input class="bmd-usr-input" name="email" type="email" placeholder="Enter your Email-ID" ng-model="loginDataPatient.email" required>
+      </div>
+    </div>
+    <div class="bmd-field error" ng-show="submitted  && loginform.email.$error.required">Email-Id is required.</div>
+    <div class="bmd-field error" ng-show="loginform.email.$touched && loginform.email.$error.email">Invalid Email-Id</div>
+    <div class="bmd-usr">
+    <div class="bmd-usr1"><img src="img/bmd-pass.png"></div>
+    <div class="bmd-usr2">
+    <input class="bmd-usr-input" name="password" type="password" placeholder="Password" ng-model="loginDataPatient.password" required>
+    </div>
+    </div>
+    <div class="bmd-field error" ng-show="submitted  && loginform.password.$error.required">Password is required.</div>
+    <button class="bmd-main-btn" ng-click="submitted=true; doLogin(loginDataPatient)">Sign in</button>
+    </form>
+    <button ng-click="patientGlogin()" class="button icon-left ion-social-google button-clear button-outline button-dark button-font bablog_btn cus-btn-goo g-signin2 bredioous">Google</button>
+    <button ng-click="patientFlogin()" class="button icon-left ion-social-facebook button-clear button-outline button-dark button-font bablog_btn cus-btn-fb bredioous">Facebook</button>
+  </div>
+            </p>
+          </md-content>
+        </md-tab>
+        <md-tab label="HCP Login">
+          <md-content class="md-padding">
+            <p>
+                <div class="bmd-usr-wrapper">
+                    <h3>HCP Login</h3>
+                      <form  name="loginform" ng-submit="loginform.$valid"> 
+                          <div class="error_block" ng-show="loginError">
+                            <ul>
+                              <li >{{loginErrorMsg}}</li>
+                            </ul>
+                          </div>
+                      <div class="bmd-usr">
+                        <div class="bmd-usr1"><img src="img/bmd-usr.png"></div>
+                        <div class="bmd-usr2">
+                          <input class="bmd-usr-input" name="email" type="email" placeholder="Enter your Email" ng-model="loginDataDoctor.email" required>
+                        </div>
+                      </div>
+                      <div class="bmd-field error" ng-show="submitted  && loginform.email.$error.required">Email-Id is required.</div>
+                      <div class="bmd-field error" ng-show="loginform.email.$touched && loginform.email.$error.email">Invalid Email-Id</div>
+                      <div class="bmd-usr">
+                      <div class="bmd-usr1"><img src="img/bmd-pass.png"></div>
+                      <div class="bmd-usr2">
+                      <input class="bmd-usr-input" name="password" type="password" placeholder="Password" ng-model="loginDataDoctor.password" required>
+                      </div>
+                      </div>
+                      <div class="bmd-field error" ng-show="submitted  && loginform.password.$error.required">Password is required.</div> 
+                      <button class="bmd-main-btn" ng-click="submitted=true; doDocLogin(loginDataDoctor)">Sign in</button>
+                      </form>
+                      <button ng-click="patientGlogin()" class="button icon-left ion-social-google button-clear button-outline button-dark button-font bablog_btn cus-btn-goo g-signin2 bredioous">Google</button>
+                      <button ng-click="patientFlogin()" class="button icon-left ion-social-facebook button-clear button-outline button-dark button-font bablog_btn cus-btn-fb bredioous">Facebook</button>
+                    </div>
+          </p>
+          </md-content>
+        </md-tab>
+      </md-tabs>
+      
+    </md-content>
+  </div>
+
+<!-- CsS tab design -->
+
+  </ion-content>
+</ion-modal-view>
+

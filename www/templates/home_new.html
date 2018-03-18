@@ -1,0 +1,40 @@
+<ion-view class="bar-stableb bg-color-white">
+	<ion-header-bar class="bar-stableb bg-color-white">
+		<button menu-toggle="left" class="common-button button button-positive button-clear button_text icon ion-navicon txt-color-black"></button>
+		<div class="bmd-head"><img src="img/bmd-logo.png" /></div>
+		<button class="common-button button button-positive button-clear button_text icon ion-android-more-vertical txt-color-black"></button>
+	</ion-header-bar>
+	<ion-content class="padding theme-bg" >
+		<div class="bmd-search-bar-outer">
+		</div>
+		<div ng-show="!doctor" class="bmd-bg-sec2">
+		</div>
+		<div ng-show="doctor" class="bmd-bg-sec">
+			<img src="{{profurl}}" height="150" width="150" />
+		</div>
+		<div class="bmd-list" ng-show="!doctorlogin && !patientlogin">
+			<a href="#/app/bmd-home"><button class="bmd-apponmnt-button">Find Service</button></a>
+			<a href="#/app/registration"><button class="bmd-apponmnt-button">Join us</button></a>
+			<a href="#/app/about"><button class="bmd-apponmnt-button">About DOCi</button></a>
+		</div>
+		<div class="bmd-list" ng-show="doctorlogin">
+			<p style="text-align: center;font-size: 16px;font-weight: bold;">Hi <b>{{name}}</b> welcome back!</p>
+			<a href="#/app/doctor_profile"><button class="bmd-apponmnt-button">View / Update Profile</button></a>
+			<a href="#/app/doctor_schedule"><button class="bmd-apponmnt-button">Add Schedule</button> </a>
+			<a href="#/app/doctor_schedule_view"><button class="bmd-apponmnt-button">View Schedule</button> </a>
+			<a href="#/app/doctor_booked"><button class="bmd-apponmnt-button">My Upcoming Appointment</button> </a>
+			<a href="#/app/booked_history"><button class="bmd-apponmnt-button">My Appointment History</button> </a>
+			<a href="#/app/doctor_service_view"><button class="bmd-apponmnt-button">View / Update Services</button> </a>
+			<a href="#/app/community"><button class="bmd-apponmnt-button">DOCi Community</button> </a>
+		</div>
+		<div class="bmd-list" ng-show="patientlogin">
+			<p>Hi <b>{{name}}</b> welcome back!</p>
+			<a href="#/app/bmd-home"><button class="bmd-apponmnt-button">Find Service</button></a>
+			<a href="#/app/about"><button class="bmd-apponmnt-button">About DOCi</button></a>
+		</div>
+	</ion-content>
+
+</ion-view>
+    
+
+

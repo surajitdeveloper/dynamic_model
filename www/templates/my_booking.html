@@ -1,0 +1,64 @@
+<ion-view>
+	<ion-header-bar class="bar-stableb bg-color-white" >
+		<button class="common-button button button-positive button-clear button_text ion-chevron-left txt-color-black"></button>
+		<div class="bmd-spclity-head">Search Result</div>
+		<button class="common-button button button-positive button-clear button_text icon ion-location txt-color-black mR25"></button>
+		<button class="common-button button button-positive button-clear button_text icon ion-android-more-vertical txt-color-black"></button>
+	</ion-header-bar>
+	<ion-content class="theme-bg">
+		<div class="bmd-results-wrapper" ng-init="get_appointments()">
+			<div class="bmd-appmnt-content-head">
+	          <h1>Last Booking Session</h1>
+	        </div>
+	        <div class="loader_div" ng-show="loading">
+		      <img id="mySpinner" src="img/loader.gif" /> 
+		    </div>
+	        <div class="bmd_apnt_main" ng-show="loadingpart && AppointmentList.status">
+	        	<li class="bmd-result-row" ng-repeat="list in AppointmentList.data">
+	        		<div class="bmd-apnt-info brd-btm-1 mb0">
+	        			<p class="reason-full">Reason : {{list.apnt_note}}</p>
+	        		</div>
+	        		<div class="bmd-apnt-info brd-btm-1 mt0">
+	        			<p style="width:100%; margin-bottom: 0;" >Last one status : <b>{{ (list.status==1) ? 'Approved' : (list.status==2)? 'Cancelled' : 'Pending'}}</b></p>
+	        			<!-- <p style="width:50%; margin-bottom: 0;"></p> -->
+	        		</div>
+	        		<div class="bmd-apnt-info brd-btm-1 mt0">
+	        			<!-- <p style="width:20%;" class="brd-rgt-1">
+	        				<small>Count:</small>
+	        				<span >{{list.apnt_count.count}}</span>
+	        			</p> -->
+	        			<p style="width:50%; margin-bottom: 0;" class="brd-rgt-1">
+	        				Date : {{list.apnt_date}}
+						</p>
+						<p style="width:50%; margin-bottom: 0;">
+	        				Time : {{list.apnt_starttime}} - {{list.apnt_endtime}}
+	        			</p>
+
+						<!-- <p class="view_soct" ng-click="view_doc(list.doctor_id)">View Doctor</p> -->
+						
+	        			
+					</div>
+					<div class="bmd-apnt-info brd-btm-1 mt0">
+							<p class="view_soct" >HCP Information</p>
+					</div>
+					<div class="bmd-apnt-info brd-btm-1 mt0">
+						<p style="width:100%; margin-bottom: 0;" >HCP Name : <b>{{list.doctor_fullname}}</b></p>
+					</div>
+					<div class="bmd-apnt-info brd-btm-1 mt0">
+						<p style="width:50%; margin-bottom: 0;" class="brd-rgt-1" >
+							<a href="tel:{{list.doctor_phone}}">{{list.doctor_phone}}</a>
+						</p>
+						<p style="width:50%; margin-bottom: 0;" >
+							<a href="mailto:{{list.doctor_email}}">{{list.doctor_email}}</a>
+						</p>
+					</div>
+	        	</li>
+	        </div>
+	        <div ng-show="AppointmentStatus" class="noMoreItems">
+				<img id="mySpinner" src="img/not_found.png" /> 
+				<p>No Results<p>
+			</div>
+		</div>
+	</ion-content>
+
+</ion-view>

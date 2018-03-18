@@ -1,0 +1,44 @@
+<ion-modal-view  class="sign_form">
+  <ion-header-bar>
+  <button ng-click="closePatientdet()" class="common-button button button-positive button-clear button_text ion-chevron-left txt-color-black"></button>
+    <div class="bmd-spclity-head">Patient Details</div>
+  </ion-header-bar>
+  <ion-content  class="theme-bg">
+<div class="bmd-usr-wrapper">
+        <div class="error_block" ng-show="loginError">
+          <ul>
+            <li></li>
+          </ul>
+        </div>
+    <div class="bmd-usr">
+      <div class="bmd-usr1"><img src="img/bmd-usr.png"></div>
+      <div class="bmd-usr2">
+        <input class="bmd-usr-input" name="email" type="text" placeholder="Enter your Email-ID" style="color: #000000 !important" ng-model="Patientdet.patient_firstname" disabled>
+      </div>
+    </div>
+    <div class="bmd-usr">
+    <div class="bmd-usr1"><img src="img/bmd-pass.png"></div>
+    <div class="bmd-usr2">
+    <input class="bmd-usr-input" name="password" type="text" placeholder="Password" style="color: #000000 !important" ng-model="Patientdet.patient_lastname" disabled>
+    </div>
+    </div>
+
+    <div class="bmd-usr">
+      <div class="bmd-usr1"><img src="img/bmd-pass.png"></div>
+      <div class="bmd-usr2">
+      <input class="bmd-usr-input" name="password" type="text" placeholder="Password" style="color: #000000 !important" ng-model="Patientdet.patient_sex" disabled>
+      </div>
+      </div>
+
+      <div class="bmd-usr">
+        <div class="bmd-usr1"><img src="img/bmd-pass.png"></div>
+        <div class="bmd-usr2">
+        <input class="bmd-usr-input" name="password" type="text" placeholder="Password" style="color: #000000 !important" ng-model="Patientdet.email" disabled>
+        </div>
+        </div>
+
+
+    <button class="bmd-main-btn" ng-click="closePatientdet()">OK</button>
+  </div>
+  </ion-content>
+</ion-modal-view>

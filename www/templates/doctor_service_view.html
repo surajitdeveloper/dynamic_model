@@ -1,0 +1,46 @@
+    <ion-view ng-init="loadprof()">
+      <ion-header-bar class="bar-stableb bg-color-white">
+      <button class="common-button button button-positive button-clear button_text ion-chevron-left txt-color-black"></button>
+		<div class="bmd-spclity-head">{{page_title}}</div>
+      </ion-header-bar>
+	<ion-content class="theme-bg">
+    <div class="bmd-appmnt-wrapper" ng-init="apnt_init()" scroll-to-top="isAtTop">
+    <div class="bmd-appmnt-content">
+      <div class="bmd-appmnt-content-head" > 
+        <h1>{{page_title}}</h1>
+      </div>
+      <div class="bmd-appmnt-content-details docoi" >
+          <div class="row bokol">
+            <div class="bmd-usr">
+              <div class="bmd-usr2">
+                {{error}}
+                <table class="doc_book">
+                  <thead>
+                    <tr>
+                      <!-- <th>Choose</th> -->
+                      <th>Service</th>
+                      <th>Price</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr ng-click="patientDet()" ng-repeat="app in services">
+                      <!--td><input type="checkbox" ng-model="app2[app.id]" /></td app2[app.id]=true;  -->
+                      <td ng-if="app.service_name">{{app.service_name}}</td>
+                      <td ng-if="app.service_name"><input class="bmd-usr" placeholder="Enter Price to select service" type="number" ng-change="get_val(app1[app.id],app.id);" ng-model="app1[app.id]" /></td>
+                      <td ng-if="!app.service_name"><input class="bmd-usr" placeholder="Enter Service Name" type="text" ng-model="app_update[$index]" ng-change="update_service(app_update[$index],$index,'sname')" /></td>
+                      <td ng-if="!app.service_name"><input class="bmd-usr" placeholder="Enter Price to select service" type="number" ng-change="update_service(app_price[$index],$index,'price');" ng-model="app_price[$index]"/></td>
+                      <!-- <td><input type="number" ng-change="service_data[app.id]={sid: app.id, price: app1[app.id]};" ng-model="app1[app.id]" /></td> -->
+                    </tr>
+                  </tbody>
+                </table>
+                <button ng-click="add()" class="bmd-apponmnt-button service-btn">Add Service</button>
+                <button ng-click="save()" class="bmd-apponmnt-button service-btn">Save</button>
+            </div>
+            </div>
+          </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</ion-content>
+</ion-view>

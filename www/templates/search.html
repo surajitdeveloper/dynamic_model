@@ -1,0 +1,84 @@
+    <ion-view>
+      <ion-header-bar class="bar-stableb bg-color-white">  
+      <button class="common-button button button-positive button-clear button_text ion-chevron-left txt-color-black"></button>
+		<div class="bmd-spclity-head">Search Result</div>
+		<button class="common-button button button-positive button-clear button_text icon ion-location txt-color-black mR25"></button>
+		 <button class="common-button button button-positive button-clear button_text icon ion-android-more-vertical txt-color-black"></button>
+      </ion-header-bar>
+	 <ion-content class="theme-bg">
+		 <div class="search_filter">
+			 <div class="search_area">
+				 <!--select class="bmd-style bmd-drop" ng-change="serach_filter(filter_spelity, 'speciality')" ng-model="filter_spelity">
+					<option ng-repeat="search_list in home_spelities" value="{{search_list.id}}">{{search_list.specialty_name}}</option>
+					
+				 </select-->
+				<select class="bmd-style bmd-drop sel-set" ng-model="filter_spelity" ng-change="serach_filter(filter_spelity.id, 'speciality')" ng-options="search_list.specialty_name for search_list in home_spelities"></select>
+			 </div>
+			<div class="search_area">
+				<select class="bmd-style bmd-drop sel-set" ng-change="serach_filter(filter_language, 'language')" ng-model="filter_language">
+					<option ng-repeat="search_list in home_languagess" value="{{search_list.id}}">{{search_list.language_name}}</option>			
+				</select>
+			</div>
+			
+			
+		 </div>
+		 <div class="search_filter">
+			 <div class="search_area">
+					<select class="bmd-style bmd-drop sel-set" ng-change="serach_filter(filter_gender, 'gender')" ng-model="filter_gender">
+						<option value="">All Gender</option>
+						<option value="Male">Male</option>
+						<option value="Female">Female</option>		
+					</select>
+			</div>
+			<div class="search_area">
+				
+			<select class="bmd-style bmd-drop sel-set" ng-model="filter_role" ng-change="serach_filter(filter_role.id, 'role')" ng-options="role.role_name for role in roles"></select>
+			</div>
+		 </div>
+	 <div class="bmd-results-date" ng-show="!noMoreItems">
+	 	<div><button class="common-button button button-positive button-clear button_text icon ion-ios-arrow-left txt-color-white" ng-click="setDate('prev')"></button></div>
+		<div style="width: 100%;text-align: center;padding: 10px;">{{selectedDate | date: "EEE, MMM dd"}}</div>
+	 	<div><button  ng-click="setDate('next')" class="common-button button button-positive button-clear button_text icon ion-ios-arrow-right txt-color-white"></button></div>
+	 </div>
+	 <div class="bmd-results-wrapper" ng-show="!noMoreItems">
+		<li class="bmd-result-row" ng-repeat="search_list in questions" ng-click="updateDoc(search_list.doctorID,search_list.firstname,search_list.languageName,search_list.description,search_list.gender,search_list.lastname,search_list.specilaityName,search_list.doc_rating,search_list.imageName = (search_list.imageName || 'no_image.jpg'),search_list.address,'first')">
+				<div class="bmd-result1">
+					<div class="bmd-result-profpic zadi">
+						<!-- <img ng-init="search_list.imageName = (search_list.imageName || 'no_image.jpg')" ng-src="{{ coreurl }}admin/{{search_list.imageName}}"> -->
+						<img ng-init="search_list.imageName = (search_list.imageName || 'no_image.jpg')" ng-src="{{search_list.imageName}}">
+					</div>
+					<div class="bmd-result-details zabai">
+						<h3>{{search_list.firstname}} {{search_list.lastname}}</h3>
+						<h4>{{search_list.specilaityName}}</h4>
+						<div>
+							<span style="margin-top:0px;vertical-align: -7px;padding-right: 15px;" class="rating">
+								<input type="radio" ng-model="search_list.doc_rating" value="5"  name="rating-input-1-search_list.doctorID" id="rating-input-1-5" class="rating-input">
+								<label class="rating-star" for="rating-input-1-5"></label>
+								<input type="radio" ng-model="search_list.doc_rating"  value="4"  name="rating-input-1-search_list.doctorID" id="rating-input-1-4" class="rating-input">
+								<label class="rating-star" for="rating-input-1-4"></label>
+								<input type="radio" ng-model="search_list.doc_rating"  value="3"  name="rating-input-1-search_list.doctorID" id="rating-input-1-3" class="rating-input" value="on">
+								<label class="rating-star" for="rating-input-1-3"></label>
+								<input type="radio" ng-model="search_list.doc_rating"  value="2"  name="rating-input-1-search_list.doctorID" id="rating-input-1-2" class="rating-input">
+								<label class="rating-star" for="rating-input-1-2"></label>
+								<input type="radio" ng-model="search_list.doc_rating"  value="1"  name="rating-input-1-search_list.doctorID" id="rating-input-1-1" class="rating-input">
+								<label class="rating-star" for="rating-input-1-1"></label>
+							</span>
+						</div>
+						<p>{{search_list.address}}</p>
+					</div>					
+				</div>
+				<div class="bmd-result2">
+					<div class="bmd-result-sch" ng-repeat="time in search_list.time_details  track by $index" ng-init="time = (time || '--')" ng-class="{'active' : time != 'Not available over this time on Today'}">{{time}}</div>
+				</div>
+		</li>
+	 </div>
+	
+	
+	<ion-infinite-scroll class="ispinner" spinner='android' distance="5%"  on-infinite="loadmore(5)"  ng-if="!noMoreItemsAvailable">
+</ion-infinite-scroll>
+<div ng-show="noMoreItems" class="noMoreItems">
+	<img id="mySpinner" src="img/not_found.png" /> 
+	<p>No Results<p>
+</div>
+</ion-content>
+</ion-view>

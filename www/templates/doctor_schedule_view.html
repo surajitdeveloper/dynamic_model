@@ -1,0 +1,202 @@
+    <ion-view>
+      <ion-header-bar class="bar-stableb bg-color-white">
+      <button class="common-button button button-positive button-clear button_text ion-chevron-left txt-color-black"></button>
+		<div class="bmd-spclity-head">Book Appointment</div>
+      </ion-header-bar>
+	<ion-content class="theme-bg">
+    <div class="bmd-appmnt-wrapper" ng-init="load_doc_schedule()" scroll-to-top="isAtTop">
+      <!--div class="bmd-appmnt-tab">
+        <ul>
+          <li class="bmd-appmnt-tab-current">Patient</li>
+          <li ng-class="{'bmd-appmnt-tab-current' : AppointmentDetails.confirm || AppointmentDetails.success}">Appointment</li>
+          <li ng-class="{'bmd-appmnt-tab-current' : AppointmentDetails.success}">Finished</li>
+        </ul>
+      </div-->
+    <div class="bmd-appmnt-content">
+      <div class="bmd-appmnt-content-head" > 
+        <h1>HCP Scheduling View</h1>
+      </div>      
+
+      <div class="tab_container">
+        <input id="tab1" type="radio" name="tabs" checked>
+        <label for="tab1"><span>Work Plan</span></label>
+  
+        <input id="tab2" type="radio" name="tabs">
+        <label for="tab2"><span>Break</span></label>
+  
+        <input id="tab3" type="radio" name="tabs">
+        <label for="tab3"><span>Vacation</span></label>
+  
+        <section id="content1" class="tab-content">
+          <h3>Work Plan</h3>
+              <p>
+                <table class="full_day">
+                  <thead>
+                    <tr>
+                      <th>Day</th>
+                      <th>Start</th>
+                      <th>End</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                               
+                    <tr>
+                      <td><ul><li><span>Monday</span></li></ul></td>
+                      <td><h4>{{docscheduleview.mon.start}}</h4></td>
+                      <td><h4>{{docscheduleview.mon.end}}</h4></td>
+                    </tr>
+
+                    <tr>
+                      <td><ul><li><span>Tuesday</span></li></ul></td>
+                      <td><h4>{{docscheduleview.tue.start}}</h4></td>
+                      <td><h4>{{docscheduleview.tue.end}}</h4></td>
+                    </tr>
+
+                    <tr>
+                      <td><ul><li><span>Wednesday</span></li></ul></td>
+                      <td><h4>{{docscheduleview.wed.start}}</h4></td>
+                      <td><h4>{{docscheduleview.wed.end}}</h4></td>
+                    </tr>
+
+                    <tr>
+                      <td><ul><li><span>Thursday</span></li></ul></td>
+                      <td><h4>{{docscheduleview.thu.start}}</h4></td>
+                      <td><h4>{{docscheduleview.thu.end}}</h4></td>
+                    </tr>
+
+                    <tr>
+                      <td><ul><li><span>Friday</span></li></ul></td>
+                      <td><h4>{{docscheduleview.fri.start}}</h4></td>
+                      <td><h4>{{docscheduleview.fri.end}}</h4></td>
+                    </tr>
+                    
+                    
+                    <tr>
+                      <td><ul><li><span>Saturday</span></li></ul></td>
+                      <td><h4>{{docscheduleview.sat.start}}</h4></td>
+                      <td><h4>{{docscheduleview.sat.end}}</h4></td>
+                    </tr>
+
+                    <tr>
+                      <td><ul><li><span>Sunday</span></li></ul></td>
+                      <td><h4>{{docscheduleview.sun.start}}</h4></td>
+                      <td><h4>{{docscheduleview.sun.end}}</h4></td>
+                    </tr>
+                    
+                  </tbody>
+                </table>
+              </p>
+        </section>
+
+        <!--datalist id="time">
+          <option ng-repeat="time in times">{{time}}</option>
+        </datalist-->
+  
+        <section id="content2" class="tab-content">
+          <h3>Break</h3>
+          <p>
+              <form  name="loginform" ng-submit="submitbrake(docsbrk)">
+            <table class="full_day">
+              <thead>
+                <tr>
+                  <th>Day</th>
+                  <th>Start</th>
+                  <th>End</th>
+                </tr>
+              </thead>
+              <tbody>
+                           
+                <tr>
+                  <td><ul><li><span>Monday</span></li></ul></td>
+                  <td><h4>{{docsbrkview.mon[0].start}}
+                  </h4></td>
+                  <td><h4>{{docsbrkview.mon.end}}</h4></td>
+                </tr>
+
+                <tr>
+                  <td><ul><li><span>Tuesday</span></li></ul></td>
+                  <td><h4>{{docsbrkview.tue.start}}</h4></td>
+                  <td><h4>{{docsbrkview.tue.end}}</h4></td>
+                </tr>
+
+                <tr>
+                  <td><ul><li><span>Wednesday</span></li></ul></td>
+                  <td><h4>{{docsbrkview.wed.start}}</h4></td>
+                  <td><h4>{{docsbrkview.wed.end}}</h4></td>
+                </tr>
+
+                <tr>
+                  <td><ul><li><span>Thursday</span></li></ul></td>
+                  <td><h4>{{docsbrkview.thu.start}}</h4></td>
+                  <td><h4>{{docsbrkview.thu.end}}</h4></td>
+                </tr>
+
+                <tr>
+                  <td><ul><li><span>Friday</span></li></ul></td>
+                  <td><h4>{{docsbrkview.fri.start}}</h4></td>
+                  <td><h4>{{docsbrkview.fri.end}}</h4></td>
+                </tr>
+                
+                
+                <tr>
+                  <td><ul><li><span>Saturday</span></li></ul></td>
+                  <td><h4>{{docsbrkview.sat.start}}</h4></td>
+                  <td><h4>{{docsbrkview.sat.end}}</h4></td>
+                </tr>
+
+                <tr>
+                  <td><ul><li><span>Sunday</span></li></ul></td>
+                  <td><h4>{{docsbrkview.sun.start}}</h4></td>
+                  <td><h4>{{docsbrkview.sun.end}}</h4></td>
+                </tr>
+                
+              </tbody>
+            </table>
+
+              </form>
+          </p>
+        </section>
+  
+        <section id="content3" class="tab-content">
+          <h3>Vacation</h3>
+              
+          
+          
+          <p>
+              <form  name="loginform" ng-submit="submitvaccation(docsvac)">
+              <table class="full_day full_day3r">
+                  <thead>
+                    <tr>
+                      <th>Start Date</th>
+                      <th>End Date</th>   
+                    </tr>
+                  </thead>
+                 <tbody class="parent_class2">
+                    <tr>
+                      <td><h6>{{docsvacview.startdate}}</h6></td>
+                      <td><h6>{{docsvacview.enddate}}</h6></td>
+                      
+                    </tr> 
+                    
+                  </tbody>
+                </table>
+                </form>
+              </p>
+
+
+
+        </section>
+  
+      
+      </div>
+  
+
+
+
+
+    </div>
+  </div>
+
+</ion-content>
+
+    </ion-view>

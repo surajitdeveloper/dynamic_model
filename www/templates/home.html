@@ -1,0 +1,87 @@
+<ion-view class="bar-stableb bg-color-white">
+	<ion-header-bar class="bar-stableb bg-color-white">
+		<button menu-toggle="left" class="common-button button button-positive button-clear button_text icon ion-navicon txt-color-black"></button>
+		<div class="bmd-head"><img src="img/bmd-logo.png"></div>
+		<button class="common-button button button-positive button-clear button_text icon ion-android-more-vertical txt-color-black"></button>
+	</ion-header-bar>
+	<ion-content class="padding theme-bg" >
+		<div class="bmd-search-bar-outer">
+			<!--form ng-submit="search(search_text)" style="display:inline-flex;width:100%">
+				<input style=" padding-left: 10px !important;" type="text" class="bmd-input" placeholder="Search doctor and clinics" name="search_text" ng-model="search_text">
+				<button type="submit"  class="button button-positive button-clear button_text icon ion-ios-search txt-color-gray"></button>
+			</form-->
+			<!-- <button class="button button-positive button-clear button_text icon ion-ios-mic txt-color-gray"></button> -->
+		</div>
+		<div class="bmd-bg-sec2">
+		</div>
+		<div class="bmd-list" ng-show="!doctorlogin">
+			<ul>
+				<li class="bmd-listing">
+							<div class="bmd-list-icon"><img src="img/bmd-location-icon.png"></div>
+							<div class="bmd-list-details">Role
+							<p><!--select class="bmd-style bmd-drop" ng-change="setRole(Selectrole)" ng-model="Selectrole">
+									<option ng-repeat="role in roles" value="{{role.id}}">{{ role.role_name }}</option>
+							</select-->
+							<select class="bmd-style bmd-drop sel-set" ng-model="filter_role" ng-change="setRole(filter_role.id)" ng-options="role.role_name for role in roles"></select>
+						</p>
+							</div>
+				</li>
+				<li class="bmd-listing" >
+					<a class="link_select" href="#/app/listing/speciality">
+						<div class="bmd-list-icon"><img src="img/bmd-speciality-icon.png"></div>
+						<div class="bmd-list-details">Speciality
+						<p >{{desiredSpeciality}}</p></div>
+						<div class="bmd-forward"><img src="img/bmd-frwrd-icon.png"></div>
+					</a>
+				</li>
+				<!--li class="bmd-listing">
+					<a class="link_select" href="#/app/listing/location">
+						<div class="bmd-list-icon"><img src="img/bmd-location-icon.png"></div>
+						<div class="bmd-list-details">Location
+						<p >{{desiredLocation}}</p></div>
+						<div class="bmd-forward"><img src="img/bmd-frwrd-icon.png"></div>
+					</a>
+
+				</li-->
+				<li class="bmd-listing">
+					<div class="bmd-list-icon"><img src="img/bmd-location-icon.png"></div>
+					<div class="bmd-list-details">Location
+					<p ><input gm-places-autocomplete ng-model="signUpData.location_data"  type="text" class="bmd-usr-input" placeholder="{{localLocation}}" ></p>
+				
+				</div>
+					<div class="bmd-forward"><img src="img/bmd-frwrd-icon.png"></div>
+				</li>
+				<li class="bmd-listing" ng-click="calendar()">
+					<div class="bmd-list-icon"><img src="img/bmd-date-icon.png"></div>
+					<div class="bmd-list-details">Date
+					<p >{{selectedDay | date: "MMM dd"}}</p></div>
+					<div class="bmd-forward"><img src="img/bmd-frwrd-icon.png"></div>
+				</li>
+
+				
+				<!-- <li class="bmd-listing">
+					<a class="link_select" href="#/app/listing/insurance" >
+						<div class="bmd-list-icon"><img src="img/bmd-insurance.png"></div>
+						<div class="bmd-list-details">Insurance
+						<p>{{desiredInsurance}}</p></div>
+						<div class="bmd-forward"><img src="img/bmd-frwrd-icon.png"></div>
+					</a>
+				</li> -->
+				
+
+			</ul>
+			<button class="bmd-apponmnt-button" ng-click="findDoc()">Find Doctor</button>
+		</div>
+		<div class="bmd-list" ng-show="doctorlogin">
+			<a href="#/app/doctor_profile"><button class="bmd-apponmnt-button">My Profile</button></a>
+			<a href="#/app/doctor_schedule"><button class="bmd-apponmnt-button">Add Schedule</button> </a>
+			<a href="#/app/doctor_schedule_view"><button class="bmd-apponmnt-button">View Schedule</button> </a>
+			<a href="#/app/doctor_booked"><button class="bmd-apponmnt-button">My Appoinment</button> </a>
+			<a href="#/app/booked_history"><button class="bmd-apponmnt-button">My Appoinment History</button> </a>
+		</div>
+	</ion-content>
+
+</ion-view>
+    
+
+

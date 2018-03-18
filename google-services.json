@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "538178475907",
+    "firebase_url": "https://doci-e9453.firebaseio.com",
+    "project_id": "doci-e9453",
+    "storage_bucket": "doci-e9453.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:538178475907:android:ffc0b4d4d553cd2e",
+        "android_client_info": {
+          "package_name": "com.doci.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "538178475907-rtje9tkjge3jk28mic4p8bhkjlatio3r.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.doci.app",
+            "certificate_hash": "4b3e691408b38a4e38a398c380275598414728f4"
+          }
+        },
+        {
+          "client_id": "538178475907-2koklrheuvfin6qv6k1ikt21dq04s17t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBDmJIiWIOCNrTuoxuzO0YYY72DGhlObIs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "538178475907-2koklrheuvfin6qv6k1ikt21dq04s17t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

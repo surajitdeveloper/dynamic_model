@@ -1,0 +1,63 @@
+<ion-side-menus enable-menu-with-back-views="false">
+  <ion-side-menu-content>
+    <ion-nav-bar class="bar-stable">
+      <ion-nav-back-button>
+      </ion-nav-back-button>
+
+      <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+        </button>
+      </ion-nav-buttons>
+    </ion-nav-bar>
+    <ion-nav-view name="menuContent"></ion-nav-view>
+  </ion-side-menu-content>
+
+  <ion-side-menu side="left">
+    <ion-header-bar class="bar-stable">
+      <h1 class="title">MENU</h1>
+    </ion-header-bar>
+    <ion-content class="bmd-spcl-theme">
+      <ion-list class="list">
+        <ion-item menu-close href="#/app/home" class="bmd-spcl-listing">
+          Home
+        </ion-item>
+        <ion-item menu-close href="#/app/login" ng-show="noSessionStatus" class="bmd-spcl-listing"> <!-- ng-click="login()" -->
+          Login
+        </ion-item>
+        <ion-item menu-close href="#/app/registration" ng-show="noSessionStatus" class="bmd-spcl-listing"><!-- ng-click="signup()" -->
+          Sign Up
+        </ion-item>
+        <!-- <ion-item menu-close ng-click="reset()" ng-show="noSessionStatus" class="bmd-spcl-listing">
+          Reset Password
+        </ion-item> -->
+        <!-- <ion-item menu-close href="#/app/my_booking" ng-show="userSessionStatus" class="bmd-spcl-listing">
+          My Booking
+        </ion-item> -->
+        <ion-item menu-close href="#/app/doctor_profile" class="bmd-spcl-listing" ng-show="doctorlogin"> <!--   -->
+          My Profile
+        </ion-item>
+        <ion-item menu-close href="#/app/doctor_schedule" class="bmd-spcl-listing" ng-show="doctorlogin"> <!--   -->
+          ADD Schedule
+        </ion-item>
+        <ion-item menu-close href="#/app/doctor_schedule_view" class="bmd-spcl-listing" ng-show="doctorlogin"> <!--   -->
+          VIEW Schedule
+        </ion-item>
+        <ion-item menu-close href="#/app/doctor_booked" class="bmd-spcl-listing" ng-show="doctorlogin"> <!--   -->
+          My Appoinment
+        </ion-item>
+        <ion-item menu-close href="#/app/booked_history" class="bmd-spcl-listing" ng-show="doctorlogin"> <!--   -->
+          Appoinment History
+        </ion-item>
+        <ion-item menu-close ng-click="my_booking()" ng-show="userSessionStatus && !doctorlogin" class="bmd-spcl-listing" >
+          My Booking
+        </ion-item>
+        <ion-item menu-close ng-click="Logout()" ng-show="userSessionStatus || doctorlogin" class="bmd-spcl-listing">
+          Logout
+        </ion-item>
+        <!-- <ion-item menu-close href="#/app/test"  class="bmd-spcl-listing">
+          My Booking
+        </ion-item> -->
+      </ion-list>
+    </ion-content>
+  </ion-side-menu>
+</ion-side-menus>

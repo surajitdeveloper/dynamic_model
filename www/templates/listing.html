@@ -1,0 +1,19 @@
+
+  <ion-header-bar class="bar-stableb bg-color-white">
+    <button class="common-button button button-positive button-clear button_text ion-chevron-left txt-color-black"></button>
+    <div class=" title title-center header-item bmd-spclity-head">Select a Speciality</div>
+    <button class="right-buttons"><i class="ion-ios-refresh-outline"></i></button>
+  </ion-header-bar>
+  <ion-view >
+<ion-content class="bmd-spcl-theme">
+  <div class="bmd-spcl-list" > 
+  	<div class="page_loader_div" ng-show="loading">
+      <img id="mySpinner" src="img/loading.gif" />
+    </div>
+    <ul class="list" ng-show="loadingpart">
+      <li ng-repeat = "selection in selectionDetails" ng-click="clickfunction(selection.id,selection.name,selectionname,null)" class="bmd-spcl-listing" > {{ selection.name }}</li>
+    </ul>
+  </div>
+</ion-content>
+
+</ion-view>
