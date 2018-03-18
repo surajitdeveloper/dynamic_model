@@ -5,6 +5,7 @@
   "dependencies": {
     "cordova-android": "6.4.0",
     "cordova-plugin-device": "1.1.4",
+    "cordova-plugin-facebook4": "^1.9.1",
     "cordova-plugin-firebase": "^0.1.25",
     "cordova-plugin-geolocation": "^4.0.1",
     "cordova-plugin-googleplus": "^5.2.1",
@@ -43,7 +44,11 @@
       },
       "cordova-plugin-whitelist": {},
       "cordova-plugin-keyboard": {},
-      "cordova-plugin-firebase": {}
+      "cordova-plugin-firebase": {},
+      "cordova-plugin-facebook4": {
+        "APP_ID": "1697762533612454",
+        "APP_NAME": "DOCI"
+      }
     },
     "platforms": [
       "android"

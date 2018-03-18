@@ -52,12 +52,16 @@ function fileSelected(inputObj, type){
 };   
  webworkerReader.readAsDataURL(fileObj);
 }
-function facebooklogin($ionicLoading, $http) // For facebook Login And signup, $cordovaFacebook
+function facebooklogin($ionicLoading, $http, type, $timeout, $localStorage, $scope) // For facebook Login And signup, $cordovaFacebook
 {
-  facebookConnectPlugin.login(["public_profile", "email", "user_friends"])
-  .then(function(success) {
+  if(localStorage.fblogin == 0)
+  {
+    localStorage.fblogin = 1;
+    console.log("login start");
+  facebookConnectPlugin.login(["public_profile", "email", "user_friends"],function(success) {
+    localStorage.fblogin = 0;
+    console.log(success);
     if(success.status === 'connected'){
-      console.log(success);
       var data = {
         userID: success.authResponse.userID,
         accessToken: success.authResponse.accessToken
@@ -93,28 +97,68 @@ function facebooklogin($ionicLoading, $http) // For facebook Login And signup, $
                   }
                  
                  //var dataSource = "http://babynames.net.in/baby3/public/app/facebookLogin";
-                  var dataSource = $rootScope.baseUrl+"/facebookLogin";
-                 dataSource += "?fname="+name_part[0]+"&lname="+name_part[1]+"&gender="+data.gender+"&lat=22&lng=88&accessToken="+localStorage.Token+"&id="+data.id+"&userid="+data.email;
-                 console.log(dataSource);
-                 /*$http.get(dataSource).success(function(data)
-                  {
+                 if(type == "doctor")
+                 {
+                  $http({
+                    url: baseurl + "/checksocialemail",
+                    method: "POST",
+                    data: {email: data.email}
+                  }).then(function success(response) {
+            
+                    console.log(response);
 
-                    window.localStorage.setItem("fname",data.data1[0].fname);
-                    window.localStorage.setItem("lname",data.data1[0].lname);
-                    window.localStorage.setItem("email",data.data1[0].email); 
-                    localStorage.userId = data.data;
-                    if (typeof localStorage.token != undefined) {
-                      $http.post($rootScope.baseUrl + "/fcmtokensubmit?userid=" + localStorage.userId + "&fcm_token=" + localStorage.token).then(function (data) {
-                       console.log("send successful");
-                     });
+                    if(response.data)
+                    {
+                      let sending_data = {
+                        firstname: name_part[0],
+                        lastname:name_part[1],
+                        email:data.email,
+                        role_id:"",
+                        gender:data.gender,
+                        lat:localStorage.lat,
+                        lng:localStorage.lng,
+                        location_str:localStorage.formatted_address,
+                        phone:""
+                      };
+                      $http({
+                        url: baseurl + "/doctorfacebooksignup",
+                        method: "POST",
+                        data: sending_data
+                      }).then(function(rdata)
+                    {
+                      $localStorage.userSession = JSON.stringify(response.data.data);
+        console.log(rdata.data.data[0]);
+        $scope.userSessionStatus = true;
+        $localStorage.userSessionStatus = true;
+        $scope.noSessionStatus = false;
+        $localStorage.doctorlogin = true;
+        $localStorage.logintype = "doctor";
+        //$localStorage.email = loginDataDoctor.email;
+        //$localStorage.password = loginDataDoctor.password;
+        $localStorage.doctor_id = rdata.data.data[0].id;
+        $localStorage.doctor_email = rdata.data.data[0].email;
+        $localStorage.doctor_phone = rdata.data.data[0].phone;
+        //$localStorage.doctor_gender = response.data.data[0].doctor_sex;
+        //$localStorage.doctor_login_data = JSON.stringify(loginDataDoctor);
+        $timeout(function() {
+          $ionicLoading.hide();
+          //$scope.closeDocLogin();
+          $scope.doctorlogin = true;
+          $window.location.href = "#/app/home";
+          $window.location.reload(true);
+        }, 1000);
+                    });
                     }
-                    localStorage.spouseID = data.data1[0].spouseID;
-                    console.log("userid- "+data.data);
-                  });*/
-                  $state.go('app.home');  //for login done and goto app home page
-                  $ionicLoading.hide();
-                  $ionicScrollDelegate.scrollTop(true);
-                  /*$rootScope.$viewHistory = {
+                  
+                    //window.location.href = "#/app/home";
+                  
+                  });
+                    
+                    $state.go('app.home');  //for login done and goto app home page
+                    $ionicLoading.hide();
+                 }
+                  /*$$ionicScrollDelegate.scrollTop(true);
+                  rootScope.$viewHistory = {
                     histories: { root: { historyId: 'root', parentHistoryId: null, stack: [], cursor: -1 } },
                     backView: null,
                     forwardView: null,
@@ -128,10 +172,14 @@ function facebooklogin($ionicLoading, $http) // For facebook Login And signup, $
     });
     }
   }, function (error) { 
+    localStorage.fblogin = 0;
+    console.log(error);
   });
+  }
 }
 function googleLogin($ionicLoading, $http, baseurl) //For Goole Login and signup
 {
+  console.log("login start");
   $ionicLoading.show({
     template: 'Logging in...'
   });
@@ -1114,7 +1162,15 @@ $scope.slide= function(myTransition) {
   }
   $scope.patientFlogin = function()
   {
-    facebooklogin($ionicLoading, $http);
+    facebooklogin($ionicLoading, $http, "patient", $timeout, $localStorage, $scope);
+  }
+  $scope.doctorGlogin = function()
+  {
+    googleLogin($ionicLoading, $http, $scope.baseurl);
+  }
+  $scope.doctorFlogin = function()
+  {
+    facebooklogin($ionicLoading, $http, "doctor", $timeout, $localStorage, $scope);
   }
   $scope.password_error1=false;
   $scope.password_error2=false;
@@ -1144,7 +1200,7 @@ $scope.slide= function(myTransition) {
     });
     //alert("hi");
     var url='/doctorlogin';
-    loginDataDoctor.device_id = (typeof $localStorage.token != "undefined") ? $localStorage.token:"";
+    loginDataDoctor.device_id = (typeof localStorage.token != "undefined") ? localStorage.token:"";
     $http.post($scope.baseurl + url, loginDataDoctor).then(function mySucc(response)
     {
       var data = response.data;

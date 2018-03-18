@@ -8,6 +8,7 @@
 angular.module('starter', ['ionic', 'starter.controllers', 'starter.services',"ngStorage", "multipleSelect", 'file-model','gm',"ngMaterial"]) //
 
   .run(function ($ionicPlatform, $http, $localStorage, $ionicLoading, $ionicPopup, $state, $location,) { //, $cordovaGeolocation
+    localStorage.fblogin = 0;
     function get_location(lat, lng)
     {
       $http.get("http://vps137395.vps.ovh.ca/baby3/public/app/findAddress?lat="+lat+"&lng="+lng).success(function (data) {
@@ -125,7 +126,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services',"n
       window.FirebasePlugin.getToken(function (token) {
         // save this server-side and use it to push notifications to this device
         console.log(token);
-        alert(token);
+        //alert(token);
         localStorage.token = token;
         //let user_id = (typeof localStorage.userId != undefined && localStorage.userId != "")?localStorage.userId:null;
       }, function (error) {
@@ -203,10 +204,10 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services',"n
       localStorage.lat = data.lat;
       localStorage.lng = data.lon;
     });
-    if (window.cordova && window.cordova.plugins.Keyboard) {
+    /*if (window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
       cordova.plugins.Keyboard.disableScroll(true);
-    }
+    }*/
     if (window.StatusBar) {
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();

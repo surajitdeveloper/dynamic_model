@@ -1,0 +1,47 @@
+<ion-modal-view class="calendar-popup"> 
+
+  <ion-content class="theme-bg">
+
+<!-- <div ng-bind-html="calenderDetails" id="calendar" class="bmd-results-wrapper"></div> -->
+<div class="bmd-results-wrapper">
+
+  <div class="bmd-calender">
+    <div class="bmd-results-date">
+
+      <div style="width: 100%;text-align: center;padding: 10px;">SELECT DATE</div>
+      <div>
+        <button class="border-none bg-color-white txt-color-theme" style="padding: 3px 14px;font-size: 14px;margin:6px;border-radius:4px;margin-top: 6px;" ng-click="closeCalendar()"><b>Done</b></button>
+      </div>
+    </div>
+
+    <div class="bmd-results-date bg-color-gray" style="border:2px solid #fff;">
+    <div>
+      <button class="common-button button button-positive button-clear button_text icon ion-ios-arrow-back txt-color-white" ng-click="calender_fetch(calenderDetails.box.prev_month,calenderDetails.box.prev_year)"></button>
+    </div>
+    <div style="font-size: 15px;font-weight: 900;padding: 10px;text-align: center;text-transform: uppercase;width: 100%;" >{{calenderDetails.box.date}}</div>
+    <div>
+      <button class="common-button button button-positive button-clear button_text icon ion-ios-arrow-forward txt-color-white" ng-click="calender_fetch(calenderDetails.box.next_month,calenderDetails.box.next_year)"></button>
+    </div>
+    </div>
+     <div class="loader_div" ng-show="loading">
+      <img id="mySpinner" src="img/loader.gif" />
+    </div>
+  <div class="bmd-result-schedules"  ng-show="loadingpart">
+    <div class="bmd-sch-row">
+      <li class="bmd-sch1">MON</li>
+      <li class="bmd-sch1">TUE</li>
+      <li class="bmd-sch1">WED</li>
+      <li class="bmd-sch1">THU</li>
+      <li class="bmd-sch1">FRI</li>
+      <li class="bmd-sch1">SAT</li>
+      <li class="bmd-sch1">SUN</li>
+    </div>
+    <div class="bmd-sch-row1">
+      <li class="bmd-sch2" ng-repeat="dates in calenderDetails.dates" ng-click="updateDate(dates.day,dates.full_date)" ng-class="{selected: dates.full_date == selectedDate}">{{dates.date}}</li>
+    </div>
+  </div>
+
+  </div>
+</div>
+	</ion-content>
+</ion-modal-view>

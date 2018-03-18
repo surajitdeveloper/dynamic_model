@@ -397,7 +397,7 @@ width: 100%;}
   font-size: 24px;
 }
 
-.cus-btn-goo {
+.cus-btn-goo, .cus-btn-fb {
   background-color: #4285F4 !important;
   border: 1px solid #4285F4 !important;
   width: 100%;
@@ -408,6 +408,7 @@ width: 100%;}
   margin-top: 12px;
   padding: 0px;*/
   font-size: 18px;
+  margin-top: 10px; 
 }
 .bredioous
 {
